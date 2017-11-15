@@ -28,10 +28,10 @@ namespace CannuyerLepapeServeur.Models
         public Achat(string pseudo_membre, int id_musique, string statut)
         {
             Pseudo_membre = pseudo_membre;
-            Id_musique + id_musique;
+            Id_musique = id_musique;
             Statut = statut;
         }
 
-        public Achat(string statut) : this(0, 0, statut) { }
+        public Achat(string statut) : this("0", 0, statut) { }
     }
 }
