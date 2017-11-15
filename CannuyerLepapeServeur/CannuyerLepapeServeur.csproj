@@ -185,6 +185,7 @@
     </Compile>
     <Compile Include="Models\Achat.cs" />
     <Compile Include="Models\AchatDAO.cs" />
+    <Compile Include="Models\MembreDAO.cs" />
     <Compile Include="Models\Musique.cs" />
     <Compile Include="Models\DataBase.cs" />
     <Compile Include="Models\Membre.cs" />

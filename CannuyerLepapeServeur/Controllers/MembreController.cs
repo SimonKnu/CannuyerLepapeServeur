@@ -4,36 +4,44 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using CannuyerLepapeServeur.Models;
 
 namespace CannuyerLepapeServeur.Controllers
 {
     public class MembreController : ApiController
     {
-        // GET: api/Membre
-        public IEnumerable<string> Get()
+ 
+        public IEnumerable<Membre> Get()
         {
-            return new string[] { "value1", "value2" };
+            return MembreDAO.GetAllMembre();
         }
 
-        // GET: api/Membre/5
-        public string Get(int id)
+        public Membre Get(string pseudo_membre)
         {
-            return "value";
+            return MembreDAO.Get(pseudo_membre);
         }
 
-        // POST: api/Membre
-        public void Post([FromBody]string value)
+        public Membre Post(Membre membre)
         {
+            return MembreDAO.Create(membre);
         }
 
-        // PUT: api/Membre/5
-        public void Put(int id, [FromBody]string value)
+        public IHttpActionResult Put(Membre membre)
         {
+            if (MembreDAO.Update(membre))
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
 
-        // DELETE: api/Membre/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(string pseudo_membre)
         {
+            if (MembreDAO.Delete(pseudo_membre))
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
     }
 }
