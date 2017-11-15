@@ -19,19 +19,19 @@ namespace CannuyerLepapeServeur.Models
             set;
         }
 
-        public string Statut
+        public int Statut
         {
             get;
             set;
         }
 
-        public Achat(string pseudo_membre, int id_musique, string statut)
+        public Achat(string pseudo_membre, int id_musique, int statut)
         {
             Pseudo_membre = pseudo_membre;
             Id_musique = id_musique;
             Statut = statut;
         }
 
-        public Achat(string statut) : this("0", 0, statut) { }
+        public Achat(int statut) : this("0", 0, statut) { }
     }
 }

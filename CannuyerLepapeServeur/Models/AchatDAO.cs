@@ -24,7 +24,7 @@ namespace CannuyerLepapeServeur.Models
 
                 while (reader.Read())
                 {
-                    liste.Add(new Achat(reader.GetString(0), reader.GetInt32(1)));
+                    liste.Add(new Achat(reader.GetString(0), reader.GetInt32(1), reader.GetInt32(2)));
                 }
             }
 
