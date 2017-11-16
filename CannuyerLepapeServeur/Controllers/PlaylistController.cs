@@ -22,10 +22,11 @@ namespace CannuyerLepapeServeur.Controllers
         }
 
 
-        // POST: api/Playlist
-        public void Post([FromBody]string value)
+        public Playlist Post(Playlist playlist)
         {
+            return PlaylistDAO.Create(playlist);
         }
+
 
         // PUT: api/Playlist/5
         public void Put(int id, [FromBody]string value)
