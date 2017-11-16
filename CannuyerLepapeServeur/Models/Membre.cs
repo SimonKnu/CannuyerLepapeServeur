@@ -73,7 +73,7 @@ namespace CannuyerLepapeServeur.Models
             set;
         }
 
-        public double Argent
+        public decimal Argent
         {
             get;
             set;
@@ -93,7 +93,7 @@ namespace CannuyerLepapeServeur.Models
 
         public Membre() { }
 
-        public Membre(string pseudo_membre, string mot_de_passe, string nom, string prenom, string mail, string telephone, string date_naissance, string pays, string ville, string rue, int code_postal, double argent, string date_inscription, bool administrateur)
+        public Membre(string pseudo_membre, string mot_de_passe, string nom, string prenom, string mail, string telephone, string date_naissance, string pays, string ville, string rue, int code_postal, decimal argent, string date_inscription, bool administrateur)
         {
             Pseudo_membre = pseudo_membre;
             Mot_de_passe = mot_de_passe;
@@ -111,7 +111,7 @@ namespace CannuyerLepapeServeur.Models
             Administrateur = administrateur;
         }
 
-        public Membre(string mot_de_passe, string nom, string prenom, string mail, string telephone, string date_naissance, string pays, string ville, string rue, int code_postal, double argent, string date_inscription, bool administrateur) : this("0", mot_de_passe, nom, prenom, mail, telephone, date_naissance, pays, ville, rue, code_postal, argent, date_inscription, administrateur) { }
+        public Membre(string mot_de_passe, string nom, string prenom, string mail, string telephone, string date_naissance, string pays, string ville, string rue, int code_postal, decimal argent, string date_inscription, bool administrateur) : this("0", mot_de_passe, nom, prenom, mail, telephone, date_naissance, pays, ville, rue, code_postal, argent, date_inscription, administrateur) { }
 
     }
 }

@@ -37,13 +37,13 @@ namespace CannuyerLepapeServeur.Models
             set;
         }
 
-        public double Prix
+        public decimal Prix
         {
             get;
             set;
         }
 
-        public Musique(int id_musique, string auteur, string titre, string style, string url, double prix)
+        public Musique(int id_musique, string auteur, string titre, string style, string url, decimal prix)
         {
             Id_musique = id_musique;
             Auteur = auteur;
@@ -53,6 +53,6 @@ namespace CannuyerLepapeServeur.Models
             Prix = prix;
         }
 
-        public Musique(string auteur, string titre, string style, string url, double prix):this(0, auteur, titre, style, url, prix) { }
+        public Musique(string auteur, string titre, string style, string url, decimal prix):this(0, auteur, titre, style, url, prix) { }
     }
 }

@@ -9,10 +9,10 @@ namespace CannuyerLepapeServeur.Models
     public class MembreDAO
     {
         private static readonly string QUERY = "SELECT * FROM membre";
-        private static readonly string GET = QUERY + " WHERE peseudo_membre = @pseudo_membre";
+        private static readonly string GET = QUERY + " WHERE pseudo_membre = @pseudo_membre";
         private static readonly string CREATE = "INSERT INTO membre(pseudo_membre, mot_de_passe, nom, prenom, mail, telephone, date_naissance, pays, ville, rue, code_postal, argent, date_inscription, administrateur) VALUES (@pseudo_membre, @mot_de_passe, @nom, @prenom, @mail, @telephone, @date_naissance, @pays, @ville, @rue, @code_postal, @argent, @date_inscription, @administrateur)";
         private static readonly string DELETE = "DELETE FROM membre WHERE pseudo_membre = @pseudo_membre";
-        private static readonly string UPDATE = "UPDATE membre SET mot_de_passe = @mot_de_passe, nom = @nom, prenom = @prenom, mail = @mail, telephone = @telephone, date_naissance = @date_naissance, pays = @pays, ville = @ville, rue = @rue, code_postal = @code_postal, argent = @argent, date_inscription = @date_inscription, administrateur = @administrateur WHERE peseudo_membre = @pseudo_membre";
+        private static readonly string UPDATE = "UPDATE membre SET mot_de_passe = @mot_de_passe, nom = @nom, prenom = @prenom, mail = @mail, telephone = @telephone, date_naissance = @date_naissance, pays = @pays, ville = @ville, rue = @rue, code_postal = @code_postal, argent = @argent, date_inscription = @date_inscription, administrateur = @administrateur WHERE pseudo_membre = @pseudo_membre";
 
         public static List<Membre> GetAllMembre()
         {
@@ -28,7 +28,7 @@ namespace CannuyerLepapeServeur.Models
 
                 while (reader.Read())
                 {
-                    liste.Add(new Membre(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), reader.GetInt32(10), reader.GetDouble(11), reader.GetString(11), reader.GetBoolean(12)));
+                    liste.Add(new Membre(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), reader.GetInt32(10), reader.GetDecimal(11), reader.GetString(12), reader.GetBoolean(13)));
                 }
             }
 
@@ -123,7 +123,7 @@ namespace CannuyerLepapeServeur.Models
 
                 if (reader.Read())
                 {
-                    membre = new Membre(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), reader.GetInt32(10), reader.GetDouble(11), reader.GetString(11), reader.GetBoolean(12));
+                    membre = new Membre(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), reader.GetInt32(10), reader.GetDecimal(11), reader.GetString(12), reader.GetBoolean(13));
                 }
             }
 
