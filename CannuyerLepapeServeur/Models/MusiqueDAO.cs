@@ -6,7 +6,7 @@ using System.Web;
 
 namespace CannuyerLepapeServeur.Models
 {
-    public class MusiqueDAO
+    public static class MusiqueDAO
     {
 
         private static readonly string QUERY = "SELECT * FROM musique";
