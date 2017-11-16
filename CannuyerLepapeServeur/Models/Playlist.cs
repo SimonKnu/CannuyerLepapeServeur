@@ -40,5 +40,7 @@ namespace CannuyerLepapeServeur.Models
         }
 
         public Playlist(string nom, string date_creation, string pseudo_membre):this (0, nom, date_creation, pseudo_membre) { }
+
+        public Playlist() { }
     }
 }

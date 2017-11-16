@@ -56,6 +56,8 @@ namespace CannuyerLepapeServeur.Models
                 command.Parameters.AddWithValue("@argent", membre.Argent);
                 command.Parameters.AddWithValue("@date_inscription", membre.Date_inscription);
                 command.Parameters.AddWithValue("@administrateur", membre.Administrateur);
+
+                command.ExecuteScalar();
             }
 
             return membre;
