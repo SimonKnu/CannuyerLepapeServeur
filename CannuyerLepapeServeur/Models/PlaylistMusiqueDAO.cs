@@ -76,5 +76,20 @@ namespace CannuyerLepapeServeur.Models
 
             return estSupprimee;
         }
+
+        public static PlaylistMusique Create(PlaylistMusique playlistMusique)
+        {
+            using (SqlConnection connection = DataBase.GetConnection())
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(CREATE, connection);
+                command.Parameters.AddWithValue("@id_musique", playlistMusique.Id_musique);
+                command.Parameters.AddWithValue("@id_playlist", playlistMusique.Id_Playlist);
+                command.ExecuteScalar();
+            }
+
+            return playlistMusique;
+        }
     }
 }

@@ -33,5 +33,7 @@ namespace CannuyerLepapeServeur.Models
         }
 
         public Achat(int statut) : this("0", 0, statut) { }
+
+        public Achat() { }
     }
 }
