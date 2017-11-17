@@ -12,7 +12,7 @@ namespace JWT.Filters
 {
     public static class JwtManager
     {
-        public const string Secret = "856FECBA3B06519C8DDDBC80BB080553"; // your symetric
+        public const string Secret = "85fds4561217zadxpCBA3B06519C8sfs1fds3253"; // your symetric
 
         public static string GenerateToken(string username, int expireMinutes = 20)
         {

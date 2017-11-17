@@ -23,13 +23,9 @@ namespace CannuyerLepapeServeur.Controllers
             return MembreDAO.Get(pseudo_membre);
         }
 
-        public IHttpActionResult Get(string mail, string password)
+        public bool Get(string mail, string password)
         {
-            if (MembreDAO.GetConnexion(mail,password))
-            {
-                return Ok();
-            }
-            return BadRequest();
+            return MembreDAO.GetConnexion(mail, password);
         }
 
 
