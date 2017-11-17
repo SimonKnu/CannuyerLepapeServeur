@@ -8,6 +8,7 @@ namespace CannuyerLepapeServeur.Models
 {
     public static class MembreDAO
     {
+        private static readonly string VERIFICATION = "SELECT * FROM membre WHERE mail = @mail AND mot_de_passe = @mot_de_passe";
         private static readonly string QUERY = "SELECT * FROM membre";
         private static readonly string GET = QUERY + " WHERE pseudo_membre = @pseudo_membre";
         private static readonly string CREATE = "INSERT INTO membre(pseudo_membre, mot_de_passe, nom, prenom, mail, telephone, date_naissance, pays, ville, rue, code_postal, argent, date_inscription, administrateur) VALUES (@pseudo_membre, @mot_de_passe, @nom, @prenom, @mail, @telephone, @date_naissance, @pays, @ville, @rue, @code_postal, @argent, @date_inscription, @administrateur)";
@@ -130,6 +131,26 @@ namespace CannuyerLepapeServeur.Models
             }
 
             return membre;
+        }
+
+        public static bool GetConnexion(string mail, string password)
+        {
+            using (SqlConnection connection = DataBase.GetConnection())
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(VERIFICATION, connection);
+                command.Parameters.AddWithValue("@mail", mail);
+                command.Parameters.AddWithValue("@mot_de_passe", password);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
