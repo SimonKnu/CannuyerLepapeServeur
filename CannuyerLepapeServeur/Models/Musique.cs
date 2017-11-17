@@ -54,5 +54,7 @@ namespace CannuyerLepapeServeur.Models
         }
 
         public Musique(string auteur, string titre, string style, string url, decimal prix):this(0, auteur, titre, style, url, prix) { }
+
+        public Musique() { }
     }
 }

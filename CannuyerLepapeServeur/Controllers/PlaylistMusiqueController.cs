@@ -20,9 +20,9 @@ namespace CannuyerLepapeServeur.Controllers
             return PlaylistMusiqueDAO.Get(id_musique, id_playlist);
         }
 
-        // POST: api/PlaylistMusique
-        public void Post([FromBody]string value)
+        public PlaylistMusique Post(PlaylistMusique playlistMusique)
         {
+            return PlaylistMusiqueDAO.Create(playlistMusique);
         }
 
         // PUT: api/PlaylistMusique/5

@@ -85,6 +85,8 @@ namespace CannuyerLepapeServeur.Models
                 command.Parameters.AddWithValue("@pseudo_membre", achat.Pseudo_membre);
                 command.Parameters.AddWithValue("@id_musique", achat.Id_musique);
                 command.Parameters.AddWithValue("@statut", achat.Statut);
+
+                command.ExecuteScalar();
             }
 
             return achat;

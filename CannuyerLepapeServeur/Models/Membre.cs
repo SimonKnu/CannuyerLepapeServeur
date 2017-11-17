@@ -110,7 +110,5 @@ namespace CannuyerLepapeServeur.Models
             Date_inscription = date_inscription;
             Administrateur = administrateur;
         }
-
-
     }
 }
