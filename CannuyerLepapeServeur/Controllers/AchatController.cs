@@ -25,9 +25,13 @@ namespace CannuyerLepapeServeur.Controllers
             return AchatDAO.Create(achat);
         }
 
-        // PUT: api/Achat/5
-        public void Put(int id, [FromBody]string value)
+        public IHttpActionResult Put(Achat achat)
         {
+            if (AchatDAO.Update(achat))
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
 
         public IHttpActionResult Delete(int id_musique, string pseudo_membre)

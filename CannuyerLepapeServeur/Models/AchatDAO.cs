@@ -12,6 +12,7 @@ namespace CannuyerLepapeServeur.Models
         private static readonly string GET = QUERY + " WHERE pseudo_membre = @pseudo_membre and id_musique = @id_musique";
         private static readonly string CREATE = "INSERT INTO achat(pseudo_membre, id_musique, statut) VALUES (@pseudo_membre, @id_musique, @statut)";
         private static readonly string DELETE = "DELETE FROM achat  WHERE pseudo_membre = @pseudo_membre and id_musique = @id_musique";
+        private static readonly string UPDATE = "UPDATE achat SET statut = @statut WHERE pseudo_membre = @pseudo_membre and id_musique = @id_musique";
 
         public static List<Achat> GetAllAchat()
         {
@@ -90,6 +91,25 @@ namespace CannuyerLepapeServeur.Models
             }
 
             return achat;
+        }
+
+        public static bool Update(Achat achat)
+        {
+            bool aEteModifiee = false;
+
+            using (SqlConnection connection = DataBase.GetConnection())
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(UPDATE, connection);
+                command.Parameters.AddWithValue("@pseudo_membre", achat.Pseudo_membre);
+                command.Parameters.AddWithValue("@id_musique", achat.Id_musique);
+                command.Parameters.AddWithValue("@statut", achat.Statut);
+
+                aEteModifiee = command.ExecuteNonQuery() != 0; ;
+            }
+
+            return aEteModifiee;
         }
     }
 }

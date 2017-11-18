@@ -103,6 +103,7 @@ namespace CannuyerLepapeServeur.Models
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(UPDATE, connection);
+                command.Parameters.AddWithValue("@id_musique", musique.Id_musique);
                 command.Parameters.AddWithValue("@auteur", musique.Auteur);
                 command.Parameters.AddWithValue("@titre", musique.Titre);
                 command.Parameters.AddWithValue("@style", musique.Style);

@@ -13,6 +13,7 @@ namespace CannuyerLepapeServeur.Models
         private static readonly string GET = QUERY + " WHERE id_playlist = @id_playlist";
         private static readonly string CREATE = "INSERT INTO playlist(nom, date_creation, pseudo_membre) OUTPUT INSERTED.id_playlist VALUES (@nom, @date_creation, @pseudo_membre)";
         private static readonly string DELETE = "DELETE FROM playlist WHERE id_playlist = @id_playlist";
+        private static readonly string UPDATE = "UPDATE playlist SET nom = @nom WHERE id_playlist = @id_playlist";
 
         public static List<Playlist> GetAllPlaylist()
         {
@@ -90,6 +91,24 @@ namespace CannuyerLepapeServeur.Models
             }
 
             return playlist;
+        }
+
+        public static bool Update(Playlist playlist)
+        {
+            bool aEteModifiee = false;
+
+            using (SqlConnection connection = DataBase.GetConnection())
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(UPDATE, connection);
+                command.Parameters.AddWithValue("@nom", playlist.Nom);
+                command.Parameters.AddWithValue("@id_playlist", playlist.Id_playlist);
+
+                aEteModifiee = command.ExecuteNonQuery() != 0; ;
+            }
+
+            return aEteModifiee;
         }
     }
 }

@@ -29,9 +29,13 @@ namespace CannuyerLepapeServeur.Controllers
         }
 
 
-        // PUT: api/Playlist/5
-        public void Put(int id, [FromBody]string value)
+        public IHttpActionResult Put(Playlist playlist)
         {
+            if (PlaylistDAO.Update(playlist))
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
 
         public IHttpActionResult Delete(int id_playlist)
