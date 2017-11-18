@@ -16,7 +16,8 @@ namespace CannuyerLepapeServeur.Controllers
                 return JwtManager.GenerateToken(mail);
             }
 
-            throw new HttpResponseException(HttpStatusCode.Unauthorized);
+            //throw new HttpResponseException(HttpStatusCode.Unauthorized);
+            return "error";
         }
 
         public bool CheckUser(string username, string password)
