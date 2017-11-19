@@ -14,6 +14,7 @@ namespace CannuyerLepapeServeur.Models
         private static readonly string DELETE = "DELETE FROM musique WHERE id_musique = @id_musique";
         private static readonly string CREATE = "INSERT INTO musique(auteur, titre, style, url, prix) OUTPUT INSERTED.id_musique VALUES (@auteur, @titre, @style, @url, @prix)";
         private static readonly string UPDATE = "UPDATE musique SET auteur = @auteur, titre = @titre, style = @style, url = @url, prix =  @prix WHERE id_musique = @id_musique";
+        private static readonly string GETACHAT = "SELECT musique.* FROM musique inner join achat on achat.pseudo_membre like @pseudo_membre and achat.id_musique = musique.id_musique where achat.statut = @statut";
 
         public static List<Musique> GetAllMusique()
         {
@@ -56,6 +57,29 @@ namespace CannuyerLepapeServeur.Models
             }
 
             return musique;
+        }
+
+        public static List<Musique> GetAchat(string pseudo_membre, int statut)
+        {
+            List<Musique> liste = new List<Musique>();
+
+            using (SqlConnection connection = DataBase.GetConnection())
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(GETACHAT, connection);
+                command.Parameters.AddWithValue("@pseudo_membre", pseudo_membre);
+                command.Parameters.AddWithValue("@statut", statut);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    liste.Add(new Musique(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetDecimal(5)));
+                }
+            }
+
+            return liste;
         }
 
         public static Musique Create(Musique musique)
