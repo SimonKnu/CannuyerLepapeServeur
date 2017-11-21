@@ -9,11 +9,11 @@ namespace CannuyerLepapeServeur.Controllers
     {
         // THis is naive endpoint for demo, it should use Basic authentication to provide token or POST request
         [AllowAnonymous]
-        public string Get(string mail, string password)
+        public string Get(string pseudo, string password)
         {
-            if (CheckUser(mail, password))
+            if (CheckUser(pseudo, password))
             {
-                return JwtManager.GenerateToken(mail);
+                return JwtManager.GenerateToken(pseudo);
             }
 
             //throw new HttpResponseException(HttpStatusCode.Unauthorized);

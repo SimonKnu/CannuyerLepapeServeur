@@ -134,7 +134,7 @@ namespace CannuyerLepapeServeur.Models
                 command.Parameters.AddWithValue("@url", musique.Url);
                 command.Parameters.AddWithValue("@prix", musique.Prix);
 
-                aEteModifiee = command.ExecuteNonQuery() != 0; ;
+                aEteModifiee = command.ExecuteNonQuery() != 0;
             }
 
             return aEteModifiee;
