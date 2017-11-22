@@ -22,6 +22,10 @@ namespace CannuyerLepapeServeur.Controllers
             return PlaylistDAO.Get(id_playlist);
         }
 
+        public IEnumerable<Playlist> Get(string mail)
+        {
+            return PlaylistDAO.GetList(mail);
+        }
 
         public Playlist Post(Playlist playlist)
         {

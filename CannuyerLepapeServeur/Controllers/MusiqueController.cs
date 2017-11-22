@@ -15,9 +15,9 @@ namespace CannuyerLepapeServeur.Controllers
             return MusiqueDAO.GetAllMusique();
         }
 
-        public Musique Get(int id_musique)
+        public IEnumerable<Musique> Get(int id_playlist)
         {
-            return MusiqueDAO.Get(id_musique);
+            return MusiqueDAO.Get(id_playlist);
         }
 
         public IEnumerable<Musique> Get(string mail, int statut)

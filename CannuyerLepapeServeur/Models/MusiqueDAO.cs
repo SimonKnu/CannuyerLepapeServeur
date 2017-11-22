@@ -15,6 +15,7 @@ namespace CannuyerLepapeServeur.Models
         private static readonly string CREATE = "INSERT INTO musique(auteur, titre, style, url, prix) OUTPUT INSERTED.id_musique VALUES (@auteur, @titre, @style, @url, @prix)";
         private static readonly string UPDATE = "UPDATE musique SET auteur = @auteur, titre = @titre, style = @style, url = @url, prix =  @prix WHERE id_musique = @id_musique";
         private static readonly string GETACHAT = "SELECT musique.* FROM musique inner join achat on achat.mail like @mail and achat.id_musique = musique.id_musique where achat.statut = @statut";
+        private static readonly string GETPLAYLIST= "SELECT musique.* FROM musique inner join playlistmusique on playlistmusique.id_musique = musique.id_musique and playlistmusique.id_playlist = @id_playlist";
 
         public static List<Musique> GetAllMusique()
         {
@@ -37,26 +38,26 @@ namespace CannuyerLepapeServeur.Models
             return liste;
         }
 
-        public static Musique Get(int id_musique)
+        public static List<Musique> Get(int id_playlist)
         {
-            Musique musique = null;
+            List<Musique> liste = new List<Musique>();
 
             using (SqlConnection connection = DataBase.GetConnection())
             {
                 connection.Open();
 
-                SqlCommand command = new SqlCommand(GET, connection);
-                command.Parameters.AddWithValue("@id_musique", id_musique);
+                SqlCommand command = new SqlCommand(GETPLAYLIST, connection);
+                command.Parameters.AddWithValue("@id_playlist", id_playlist);
 
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.Read())
                 {
-                    musique = new Musique(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetDecimal(5));
+                    liste.Add(new Musique(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetDecimal(5)));
                 }
             }
 
-            return musique;
+            return liste;
         }
 
         public static List<Musique> GetAchat(string mail, int statut)
