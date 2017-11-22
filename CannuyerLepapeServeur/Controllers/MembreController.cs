@@ -17,15 +17,15 @@ namespace CannuyerLepapeServeur.Controllers
             return MembreDAO.GetAllMembre();
         }
 
-        [JwtAuthentication]
+        
         public Membre Get(string pseudo_membre)
         {
             return MembreDAO.Get(pseudo_membre);
         }
 
-        public bool Get(string mail, string password)
+        public bool Get(string pseudo_membre, string mot_de_passe)
         {
-            return MembreDAO.GetConnexion(mail, password);
+            return MembreDAO.GetConnexion(pseudo_membre, mot_de_passe);
         }
 
 

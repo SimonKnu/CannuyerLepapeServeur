@@ -10,7 +10,7 @@ namespace CannuyerLepapeServeur.Models
     {
         private static readonly string VERIFICATION = "SELECT * FROM membre WHERE pseudo_membre = @pseudo_membre AND mot_de_passe = @mot_de_passe";
         private static readonly string QUERY = "SELECT * FROM membre";
-        private static readonly string GET = QUERY + " WHERE pseudo_membre = @pseudo_membre";
+        private static readonly string GET = QUERY+ " WHERE pseudo_membre = @pseudo";
         private static readonly string CREATE = "INSERT INTO membre(pseudo_membre, mot_de_passe, nom, prenom, mail, telephone, date_naissance, pays, ville, rue, code_postal, argent, date_inscription, administrateur) VALUES (@pseudo_membre, @mot_de_passe, @nom, @prenom, @mail, @telephone, @date_naissance, @pays, @ville, @rue, @code_postal, @argent, @date_inscription, @administrateur)";
         private static readonly string DELETE = "DELETE FROM membre WHERE pseudo_membre = @pseudo_membre";
         private static readonly string UPDATE = "UPDATE membre SET mot_de_passe = @mot_de_passe, nom = @nom, prenom = @prenom, mail = @mail, telephone = @telephone, date_naissance = @date_naissance, pays = @pays, ville = @ville, rue = @rue, code_postal = @code_postal, argent = @argent, date_inscription = @date_inscription, administrateur = @administrateur WHERE pseudo_membre = @pseudo_membre";
@@ -111,7 +111,7 @@ namespace CannuyerLepapeServeur.Models
             return aEteModifiee;
         }
 
-        public static Membre Get(string pseudo_membre)
+        public static Membre Get(string pseudo)
         {
             Membre membre = null;
 
@@ -120,7 +120,7 @@ namespace CannuyerLepapeServeur.Models
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(GET, connection);
-                command.Parameters.AddWithValue("@pseudo_membre", pseudo_membre);
+                command.Parameters.AddWithValue("@pseudo", pseudo);
 
                 SqlDataReader reader = command.ExecuteReader();
 
