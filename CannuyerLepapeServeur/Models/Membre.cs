@@ -89,10 +89,10 @@ namespace CannuyerLepapeServeur.Models
 
         public Membre(string mail, string mot_de_passe, string nom, string prenom, string telephone, string date_naissance, string pays, string ville, string rue, int code_postal, decimal argent, string date_inscription, bool administrateur)
         {
+            Mail = mail;
             Mot_de_passe = mot_de_passe;
             Nom = nom;
             Prenom = prenom;
-            Mail = mail;
             Telephone = telephone;
             Date_naissance = date_naissance;
             Ville = ville;
