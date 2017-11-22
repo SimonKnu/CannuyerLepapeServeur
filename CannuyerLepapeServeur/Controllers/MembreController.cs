@@ -18,14 +18,14 @@ namespace CannuyerLepapeServeur.Controllers
         }
 
         
-        public Membre Get(string pseudo_membre)
+        public Membre Get(string mail)
         {
-            return MembreDAO.Get(pseudo_membre);
+            return MembreDAO.Get(mail);
         }
 
-        public bool Get(string pseudo_membre, string mot_de_passe)
+        public bool Get(string mail, string mot_de_passe)
         {
-            return MembreDAO.GetConnexion(pseudo_membre, mot_de_passe);
+            return MembreDAO.GetConnexion(mail, mot_de_passe);
         }
 
 
@@ -45,9 +45,9 @@ namespace CannuyerLepapeServeur.Controllers
         }
 
         [JwtAuthentication]
-        public IHttpActionResult Delete(string pseudo_membre)
+        public IHttpActionResult Delete(string mail)
         {
-            if (MembreDAO.Delete(pseudo_membre))
+            if (MembreDAO.Delete(mail))
             {
                 return Ok();
             }

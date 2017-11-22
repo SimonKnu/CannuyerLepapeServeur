@@ -7,7 +7,7 @@ namespace CannuyerLepapeServeur.Models
 {
     public class Achat
     {
-        public string Pseudo_membre
+        public string Mail
         {
             get;
             set;
@@ -25,9 +25,9 @@ namespace CannuyerLepapeServeur.Models
             set;
         }
 
-        public Achat(string pseudo_membre, int id_musique, int statut)
+        public Achat(string mail, int id_musique, int statut)
         {
-            Pseudo_membre = pseudo_membre;
+            Mail = mail;
             Id_musique = id_musique;
             Statut = statut;
         }

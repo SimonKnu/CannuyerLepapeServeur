@@ -9,10 +9,10 @@ namespace CannuyerLepapeServeur.Models
     public static class AchatDAO
     {
         private static readonly string QUERY = "SELECT * FROM achat";
-        private static readonly string GET = QUERY + " WHERE pseudo_membre = @pseudo_membre and id_musique = @id_musique";
-        private static readonly string CREATE = "INSERT INTO achat(pseudo_membre, id_musique, statut) VALUES (@pseudo_membre, @id_musique, @statut)";
-        private static readonly string DELETE = "DELETE FROM achat  WHERE pseudo_membre = @pseudo_membre and id_musique = @id_musique";
-        private static readonly string UPDATE = "UPDATE achat SET statut = @statut WHERE pseudo_membre = @pseudo_membre and id_musique = @id_musique";
+        private static readonly string GET = QUERY + " WHERE mail = @mail and id_musique = @id_musique";
+        private static readonly string CREATE = "INSERT INTO achat(mail, id_musique, statut) VALUES (@mail, @id_musique, @statut)";
+        private static readonly string DELETE = "DELETE FROM achat  WHERE mail = @mail and id_musique = @id_musique";
+        private static readonly string UPDATE = "UPDATE achat SET statut = @statut WHERE mail = @mail and id_musique = @id_musique";
 
         public static List<Achat> GetAllAchat()
         {
@@ -35,7 +35,7 @@ namespace CannuyerLepapeServeur.Models
             return liste;
         }
 
-        public static Achat Get(int id_musique, string pseudo_membre)
+        public static Achat Get(int id_musique, string mail)
         {
             Achat achat = null;
 
@@ -45,7 +45,7 @@ namespace CannuyerLepapeServeur.Models
 
                 SqlCommand command = new SqlCommand(GET, connection);
                 command.Parameters.AddWithValue("@id_musique", id_musique);
-                command.Parameters.AddWithValue("@pseudo_membre", pseudo_membre);
+                command.Parameters.AddWithValue("@mail", mail);
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -58,7 +58,7 @@ namespace CannuyerLepapeServeur.Models
             return achat;
         }
 
-        public static bool Delete(int id_musique, string pseudo_membre)
+        public static bool Delete(int id_musique, string mail)
         {
             bool estSupprimee = false;
 
@@ -68,7 +68,7 @@ namespace CannuyerLepapeServeur.Models
 
                 SqlCommand command = new SqlCommand(DELETE, connection);
                 command.Parameters.AddWithValue("@id_musique", id_musique);
-                command.Parameters.AddWithValue("@pseudo_membre", pseudo_membre);
+                command.Parameters.AddWithValue("@mail", mail);
 
                 estSupprimee = command.ExecuteNonQuery() != 0; ;
             }
@@ -83,7 +83,7 @@ namespace CannuyerLepapeServeur.Models
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(CREATE, connection);
-                command.Parameters.AddWithValue("@pseudo_membre", achat.Pseudo_membre);
+                command.Parameters.AddWithValue("@mail", achat.Mail);
                 command.Parameters.AddWithValue("@id_musique", achat.Id_musique);
                 command.Parameters.AddWithValue("@statut", achat.Statut);
 
@@ -102,7 +102,7 @@ namespace CannuyerLepapeServeur.Models
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(UPDATE, connection);
-                command.Parameters.AddWithValue("@pseudo_membre", achat.Pseudo_membre);
+                command.Parameters.AddWithValue("@mail", achat.Mail);
                 command.Parameters.AddWithValue("@id_musique", achat.Id_musique);
                 command.Parameters.AddWithValue("@statut", achat.Statut);
 

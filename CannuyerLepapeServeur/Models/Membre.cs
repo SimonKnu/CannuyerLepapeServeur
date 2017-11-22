@@ -7,12 +7,6 @@ namespace CannuyerLepapeServeur.Models
 {
     public class Membre
     {
-        public string Pseudo_membre
-        {
-            get;
-            set;
-        }
-
         public string Mot_de_passe
         {
             get;
@@ -93,9 +87,8 @@ namespace CannuyerLepapeServeur.Models
 
         public Membre() { }
 
-        public Membre(string pseudo_membre, string mot_de_passe, string nom, string prenom, string mail, string telephone, string date_naissance, string pays, string ville, string rue, int code_postal, decimal argent, string date_inscription, bool administrateur)
+        public Membre(string mail, string mot_de_passe, string nom, string prenom, string telephone, string date_naissance, string pays, string ville, string rue, int code_postal, decimal argent, string date_inscription, bool administrateur)
         {
-            Pseudo_membre = pseudo_membre;
             Mot_de_passe = mot_de_passe;
             Nom = nom;
             Prenom = prenom;

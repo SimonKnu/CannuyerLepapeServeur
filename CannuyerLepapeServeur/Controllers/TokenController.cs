@@ -9,20 +9,20 @@ namespace CannuyerLepapeServeur.Controllers
     {
         // THis is naive endpoint for demo, it should use Basic authentication to provide token or POST request
         [AllowAnonymous]
-        public string Get(string pseudo_membre, string mot_de_passe)
+        public string Get(string mail, string mot_de_passe)
         {
-            if (CheckUser(pseudo_membre, mot_de_passe))
+            if (CheckUser(mail, mot_de_passe))
             {
-                return JwtManager.GenerateToken(pseudo_membre);
+                return JwtManager.GenerateToken(mail);
             }
 
             //throw new HttpResponseException(HttpStatusCode.Unauthorized);
             return "error";
         }
 
-        public bool CheckUser(string username, string password)
+        public bool CheckUser(string mail, string password)
         {
-            return MembreDAO.GetConnexion(username, password);
+            return MembreDAO.GetConnexion(mail, password);
         }
     }
 }

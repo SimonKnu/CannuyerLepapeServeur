@@ -25,21 +25,21 @@ namespace CannuyerLepapeServeur.Models
             set;
         }
 
-        public string Pseudo_membre
+        public string Mail
         {
             get;
             set;
         }
 
-        public Playlist(int id_playlist, string nom, string date_creation, string pseudo_membre)
+        public Playlist(int id_playlist, string nom, string date_creation, string mail)
         {
             Id_playlist = id_playlist;
             Nom = nom;
             Date_creation = date_creation;
-            Pseudo_membre = pseudo_membre;
+            Mail = mail;
         }
 
-        public Playlist(string nom, string date_creation, string pseudo_membre):this (0, nom, date_creation, pseudo_membre) { }
+        public Playlist(string nom, string date_creation, string mail) :this (0, nom, date_creation, mail) { }
 
         public Playlist() { }
     }

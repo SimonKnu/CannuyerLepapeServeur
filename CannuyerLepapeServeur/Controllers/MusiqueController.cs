@@ -20,9 +20,9 @@ namespace CannuyerLepapeServeur.Controllers
             return MusiqueDAO.Get(id_musique);
         }
 
-        public IEnumerable<Musique> Get(string pseudo_membre, int statut)
+        public IEnumerable<Musique> Get(string mail, int statut)
         {
-            return MusiqueDAO.GetAchat(pseudo_membre, statut);
+            return MusiqueDAO.GetAchat(mail, statut);
         }
 
         public Musique Post(Musique musique)

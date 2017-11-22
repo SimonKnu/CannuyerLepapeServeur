@@ -11,7 +11,7 @@ namespace CannuyerLepapeServeur.Models
 
         private static readonly string QUERY = "SELECT * FROM playlist";       
         private static readonly string GET = QUERY + " WHERE id_playlist = @id_playlist";
-        private static readonly string CREATE = "INSERT INTO playlist(nom, date_creation, pseudo_membre) OUTPUT INSERTED.id_playlist VALUES (@nom, @date_creation, @pseudo_membre)";
+        private static readonly string CREATE = "INSERT INTO playlist(nom, date_creation, mail) OUTPUT INSERTED.id_playlist VALUES (@nom, @date_creation, @mail)";
         private static readonly string DELETE = "DELETE FROM playlist WHERE id_playlist = @id_playlist";
         private static readonly string UPDATE = "UPDATE playlist SET nom = @nom WHERE id_playlist = @id_playlist";
 
@@ -85,7 +85,7 @@ namespace CannuyerLepapeServeur.Models
                 SqlCommand command = new SqlCommand(CREATE, connection);
                 command.Parameters.AddWithValue("@nom", playlist.Nom);
                 command.Parameters.AddWithValue("@date_creation", playlist.Date_creation);
-                command.Parameters.AddWithValue("@pseudo_membre", playlist.Pseudo_membre);
+                command.Parameters.AddWithValue("@mail", playlist.Mail);
 
                 playlist.Id_playlist = (int)command.ExecuteScalar();
             }

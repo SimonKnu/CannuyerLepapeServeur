@@ -15,9 +15,9 @@ namespace CannuyerLepapeServeur.Controllers
             return AchatDAO.GetAllAchat();
         }
 
-        public Achat Get(int id_musique, string pseudo_membre)
+        public Achat Get(int id_musique, string mail)
         {
-            return AchatDAO.Get(id_musique, pseudo_membre);
+            return AchatDAO.Get(id_musique, mail);
         }
 
         public Achat Post(Achat achat)
@@ -34,9 +34,9 @@ namespace CannuyerLepapeServeur.Controllers
             return BadRequest();
         }
 
-        public IHttpActionResult Delete(int id_musique, string pseudo_membre)
+        public IHttpActionResult Delete(int id_musique, string mail)
         {
-            if (AchatDAO.Delete (id_musique, pseudo_membre))
+            if (AchatDAO.Delete (id_musique, mail))
             {
                 return Ok();
             }
