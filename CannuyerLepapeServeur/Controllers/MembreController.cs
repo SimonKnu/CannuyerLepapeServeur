@@ -17,7 +17,7 @@ namespace CannuyerLepapeServeur.Controllers
             return MembreDAO.GetAllMembre();
         }
 
-        
+        [JwtAuthentication]
         public Membre Get(string mail)
         {
             return MembreDAO.Get(mail);
