@@ -11,7 +11,7 @@ namespace CannuyerLepapeServeur.Models
         private static readonly string VERIFICATION = "SELECT * FROM membre WHERE mail = @mail AND mot_de_passe = @mot_de_passe";
         private static readonly string QUERY = "SELECT * FROM membre";
         private static readonly string GET = QUERY+ " WHERE mail = @mail";
-        private static readonly string CREATE = "INSERT INTO membre(mail, mot_de_passe, nom, prenom, telephone, date_naissance, pays, ville, rue, code_postal, argent, date_inscription, administrateur) VALUES (@mail, @mot_de_passe, @nom, @prenom, @telephone, @date_naissance, @pays, @ville, @rue, @code_postal, @argent, @date_inscription, @administrateur)";
+        private static readonly string CREATE = "INSERT INTO membre(mail, mot_de_passe, nom, prenom, telephone, date_naissance, pays, ville, rue, code_postal, argent, date_inscription, administrateur) VALUES (@mail, @mot_de_passe, @nom, @prenom, @telephone, @date_naissance, @pays, @ville, @rue, @code_postal, 0, @date_inscription, @administrateur)";
         private static readonly string DELETE = "DELETE FROM membre WHERE mail = @mail";
         private static readonly string UPDATE = "UPDATE membre SET mot_de_passe = @mot_de_passe, nom = @nom, prenom = @prenom, telephone = @telephone, date_naissance = @date_naissance, pays = @pays, ville = @ville, rue = @rue, code_postal = @code_postal, argent = @argent, date_inscription = @date_inscription, administrateur = @administrateur WHERE mail = @mail";
 
@@ -53,7 +53,6 @@ namespace CannuyerLepapeServeur.Models
                 command.Parameters.AddWithValue("@ville", membre.Ville);
                 command.Parameters.AddWithValue("@rue", membre.Rue);
                 command.Parameters.AddWithValue("@code_postal", membre.Code_postal);
-                command.Parameters.AddWithValue("@argent", membre.Argent);
                 command.Parameters.AddWithValue("@date_inscription", membre.Date_inscription);
                 command.Parameters.AddWithValue("@administrateur", membre.Administrateur);
 
