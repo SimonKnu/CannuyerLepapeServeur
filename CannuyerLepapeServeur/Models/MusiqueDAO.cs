@@ -9,7 +9,7 @@ namespace CannuyerLepapeServeur.Models
     public static class MusiqueDAO
     {
 
-        private static readonly string QUERY = "SELECT * FROM musique";
+        private static readonly string QUERY = "SELECT * FROM musique order by auteur asc";
         private static readonly string GET = QUERY + " WHERE id_musique = @id_musique";
         private static readonly string DELETE = "DELETE FROM musique WHERE id_musique = @id_musique";
         private static readonly string CREATE = "INSERT INTO musique(auteur, titre, style, url, prix) OUTPUT INSERTED.id_musique VALUES (@auteur, @titre, @style, @url, @prix)";
