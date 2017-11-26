@@ -14,8 +14,8 @@ namespace CannuyerLepapeServeur.Models
         private static readonly string DELETE = "DELETE FROM musique WHERE id_musique = @id_musique";
         private static readonly string CREATE = "INSERT INTO musique(auteur, titre, style, url, prix) OUTPUT INSERTED.id_musique VALUES (@auteur, @titre, @style, @url, @prix)";
         private static readonly string UPDATE = "UPDATE musique SET auteur = @auteur, titre = @titre, style = @style, url = @url, prix =  @prix WHERE id_musique = @id_musique";
-        private static readonly string GETACHAT = "SELECT musique.* FROM musique inner join achat on achat.mail like @mail and achat.id_musique = musique.id_musique where achat.statut = @statut";
-        private static readonly string GETPLAYLIST= "SELECT musique.* FROM musique inner join playlistmusique on playlistmusique.id_musique = musique.id_musique and playlistmusique.id_playlist = @id_playlist";
+        private static readonly string GETACHAT = "SELECT musique.* FROM musique INNER JOIN achat ON achat.id_musique = musique.id_musique WHERE achat.statut = @statut AND achat.mail LIKE @mail";
+        private static readonly string GETPLAYLIST= "SELECT musique.* FROM musique inner join playlistmusique on playlistmusique.id_musique = musique.id_musique where playlistmusique.id_playlist = @id_playlist";
 
         public static List<Musique> GetAllMusique()
         {
