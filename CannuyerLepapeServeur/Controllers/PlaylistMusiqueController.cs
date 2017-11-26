@@ -30,13 +30,13 @@ namespace CannuyerLepapeServeur.Controllers
         {
         }
 
-        public IHttpActionResult Delete(int id_musique, int id_playlist)
+        public string Delete(int id_musique, int id_playlist)
         {
             if (PlaylistMusiqueDAO.Delete(id_musique, id_playlist))
             {
-                return Ok();
+                return "OK";
             }
-            return BadRequest();
+            return "NOT_DELETE";
         }
     }
 }

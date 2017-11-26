@@ -30,22 +30,22 @@ namespace CannuyerLepapeServeur.Controllers
             return MusiqueDAO.Create(musique);
         }
 
-        public IHttpActionResult Put(Musique musique)
+        public string Put(Musique musique)
         {
             if (MusiqueDAO.Update(musique))
             {
-                return Ok();
+                return "OK";
             }
-            return BadRequest();
+            return "NOT_PUT";
         }
 
-        public IHttpActionResult Delete(int id_musique)
+        public string Delete(int id_musique)
         {
             if (MusiqueDAO.Delete(id_musique))
             {
-                return Ok();
+                return "OK";
             }
-            return BadRequest();
+            return "NOT_DELETE";
         }
     }
 }

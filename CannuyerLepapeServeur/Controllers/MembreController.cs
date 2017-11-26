@@ -35,23 +35,23 @@ namespace CannuyerLepapeServeur.Controllers
         }
 
         [JwtAuthentication]
-        public IHttpActionResult Put(Membre membre)
+        public string Put(Membre membre)
         {
             if (MembreDAO.Update(membre))
             {
-                return Ok();
+                return "OK";
             }
-            return BadRequest();
+            return "NOT_PUT";
         }
 
         [JwtAuthentication]
-        public IHttpActionResult Delete(string mail)
+        public string Delete(string mail)
         {
             if (MembreDAO.Delete(mail))
             {
-                return Ok();
+                return "OK";
             }
-            return BadRequest();
+            return "NOT_DELETE";
         }
     }
 }

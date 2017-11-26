@@ -33,22 +33,22 @@ namespace CannuyerLepapeServeur.Controllers
         }
 
 
-        public IHttpActionResult Put(Playlist playlist)
+        public string Put(Playlist playlist)
         {
             if (PlaylistDAO.Update(playlist))
             {
-                return Ok();
+                return "OK";
             }
-            return BadRequest();
+            return "NOT_PUT";
         }
 
-        public IHttpActionResult Delete(int id_playlist)
+        public string Delete(int id_playlist)
         {
             if (PlaylistDAO.Delete(id_playlist))
             {
-                return Ok();
+                return "OK";
             }
-            return BadRequest();
+            return"NOT_DELETE";
         }
     }
 }

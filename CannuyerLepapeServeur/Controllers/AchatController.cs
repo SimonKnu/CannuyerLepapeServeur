@@ -25,22 +25,22 @@ namespace CannuyerLepapeServeur.Controllers
             return AchatDAO.Create(achat);
         }
 
-        public IHttpActionResult Put(Achat achat)
+        public string Put(Achat achat)
         {
             if (AchatDAO.Update(achat))
             {
-                return Ok();
+                return "OK";
             }
-            return BadRequest();
+            return "NOT_PUT";
         }
 
-        public IHttpActionResult Delete(int id_musique, string mail)
+        public string Delete(int id_musique, string mail)
         {
             if (AchatDAO.Delete (id_musique, mail))
             {
-                return Ok();
+                return "OK";
             }
-            return BadRequest();
+            return "NOT_DELETE";
         }
     }
 }
