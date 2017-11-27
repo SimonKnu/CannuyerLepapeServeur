@@ -16,23 +16,24 @@ namespace CannuyerLepapeServeur.Controllers
         {
             return MembreDAO.GetAllMembre();
         }
-
         [JwtAuthentication]
         public Membre Get(string mail)
         {
             return MembreDAO.Get(mail);
         }
-
         public bool Get(string mail, string mot_de_passe)
         {
             return MembreDAO.GetConnexion(mail, mot_de_passe);
         }
 
 
+
         public Membre Post(Membre membre)
         {
             return MembreDAO.Create(membre);
         }
+
+
 
         [JwtAuthentication]
         public string Put(Membre membre)
@@ -43,6 +44,25 @@ namespace CannuyerLepapeServeur.Controllers
             }
             return "NOT_PUT";
         }
+        [JwtAuthentication]
+        public string Put(string mail, string mot_de_passe)
+        {
+            if (MembreDAO.UpdatePassWord(mail,mot_de_passe))
+            {
+                return "OK";
+            }
+            return "NOT_PUT";
+        }
+        [JwtAuthentication]
+        public string Put(string mail, decimal argent)
+        {
+            if (MembreDAO.UpdateArgent(mail,argent))
+            {
+                return "OK";
+            }
+            return "NOT_PUT";
+        }
+
 
         [JwtAuthentication]
         public string Delete(string mail)

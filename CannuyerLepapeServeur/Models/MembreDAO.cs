@@ -11,9 +11,13 @@ namespace CannuyerLepapeServeur.Models
         private static readonly string VERIFICATION = "SELECT * FROM membre WHERE mail = @mail AND mot_de_passe = @mot_de_passe";
         private static readonly string QUERY = "SELECT * FROM membre";
         private static readonly string GET = QUERY+ " WHERE mail = @mail";
-        private static readonly string CREATE = "INSERT INTO membre(mail, mot_de_passe, nom, prenom, telephone, date_naissance, pays, ville, rue, code_postal, argent, date_inscription, administrateur) VALUES (@mail, @mot_de_passe, @nom, @prenom, @telephone, @date_naissance, @pays, @ville, @rue, @code_postal, 0, @date_inscription, @administrateur)";
+        private static readonly string CREATE = "INSERT INTO membre(mail, mot_de_passe, nom, prenom, telephone, date_naissance, pays, ville, rue, code_postal, argent, date_inscription, administrateur) VALUES (@mail, @mot_de_passe, @nom, @prenom, @telephone, @date_naissance, @pays, @ville, @rue, @code_postal, @argent, @date_inscription, @administrateur)";
         private static readonly string DELETE = "DELETE FROM membre WHERE mail = @mail";
-        private static readonly string UPDATE = "UPDATE membre SET mot_de_passe = @mot_de_passe, nom = @nom, prenom = @prenom, telephone = @telephone, date_naissance = @date_naissance, pays = @pays, ville = @ville, rue = @rue, code_postal = @code_postal, argent = @argent, date_inscription = @date_inscription, administrateur = @administrateur WHERE mail = @mail";
+        private static readonly string UPDATE = "UPDATE membre SET nom = @nom, prenom = @prenom, telephone = @telephone, date_naissance = @date_naissance, pays = @pays, ville = @ville, rue = @rue, code_postal = @code_postal WHERE mail = @mail";
+        private static readonly string UPDATEPASSWORD = "UPDATE membre SET mot_de_passe = @mot_de_passe WHERE mail = @mail";
+        private static readonly string UPDATEARGENT = "UPDATE membre SET argent = @argent WHERE mail = @mail";
+
+
 
         public static List<Membre> GetAllMembre()
         {
@@ -35,79 +39,6 @@ namespace CannuyerLepapeServeur.Models
 
             return liste;
         }
-
-        public static Membre Create(Membre membre)
-        {
-            using (SqlConnection connection = DataBase.GetConnection())
-            {
-                connection.Open();
-
-                SqlCommand command = new SqlCommand(CREATE, connection);
-                command.Parameters.AddWithValue("@mail", membre.Mail);
-                command.Parameters.AddWithValue("@mot_de_passe", membre.Mot_de_passe);
-                command.Parameters.AddWithValue("@nom", membre.Nom);
-                command.Parameters.AddWithValue("@prenom", membre.Prenom);
-                command.Parameters.AddWithValue("@telephone", membre.Telephone);
-                command.Parameters.AddWithValue("@date_naissance", membre.Date_naissance);
-                command.Parameters.AddWithValue("@pays", membre.Pays);
-                command.Parameters.AddWithValue("@ville", membre.Ville);
-                command.Parameters.AddWithValue("@rue", membre.Rue);
-                command.Parameters.AddWithValue("@code_postal", membre.Code_postal);
-                command.Parameters.AddWithValue("@date_inscription", membre.Date_inscription);
-                command.Parameters.AddWithValue("@administrateur", membre.Administrateur);
-
-                command.ExecuteScalar();
-            }
-
-            return membre;
-        }
-
-        public static bool Delete(string mail)
-        {
-            bool estSupprimee = false;
-
-            using (SqlConnection connection = DataBase.GetConnection())
-            {
-                connection.Open();
-
-                SqlCommand command = new SqlCommand(DELETE, connection);
-                command.Parameters.AddWithValue("@mail", mail);
-
-                estSupprimee = command.ExecuteNonQuery() != 0; ;
-            }
-
-            return estSupprimee;
-        }
-
-        public static bool Update(Membre membre)
-        {
-            bool aEteModifiee = false;
-
-            using (SqlConnection connection = DataBase.GetConnection())
-            {
-                connection.Open();
-
-                SqlCommand command = new SqlCommand(UPDATE, connection);
-                command.Parameters.AddWithValue("@mail", membre.Mail);
-                command.Parameters.AddWithValue("@mot_de_passe", membre.Mot_de_passe);
-                command.Parameters.AddWithValue("@nom", membre.Nom);
-                command.Parameters.AddWithValue("@prenom", membre.Prenom);
-                command.Parameters.AddWithValue("@telephone", membre.Telephone);
-                command.Parameters.AddWithValue("@date_naissance", membre.Date_naissance);
-                command.Parameters.AddWithValue("@pays", membre.Pays);
-                command.Parameters.AddWithValue("@ville", membre.Ville);
-                command.Parameters.AddWithValue("@rue", membre.Rue);
-                command.Parameters.AddWithValue("@code_postal", membre.Code_postal);
-                command.Parameters.AddWithValue("@argent", membre.Argent);
-                command.Parameters.AddWithValue("@date_inscription", membre.Date_inscription);
-                command.Parameters.AddWithValue("@administrateur", membre.Administrateur);
-
-                aEteModifiee = command.ExecuteNonQuery() != 0; ;
-            }
-
-            return aEteModifiee;
-        }
-
         public static Membre Get(string mail)
         {
             Membre membre = null;
@@ -129,7 +60,6 @@ namespace CannuyerLepapeServeur.Models
 
             return membre;
         }
-
         public static bool GetConnexion(string mail, string password)
         {
             using (SqlConnection connection = DataBase.GetConnection())
@@ -148,6 +78,115 @@ namespace CannuyerLepapeServeur.Models
                 }
             }
             return false;
+        }
+
+
+
+        public static Membre Create(Membre membre)
+        {
+            using (SqlConnection connection = DataBase.GetConnection())
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(CREATE, connection);
+                command.Parameters.AddWithValue("@mail", membre.Mail);
+                command.Parameters.AddWithValue("@mot_de_passe", membre.Mot_de_passe);
+                command.Parameters.AddWithValue("@nom", membre.Nom);
+                command.Parameters.AddWithValue("@prenom", membre.Prenom);
+                command.Parameters.AddWithValue("@telephone", membre.Telephone);
+                command.Parameters.AddWithValue("@date_naissance", membre.Date_naissance);
+                command.Parameters.AddWithValue("@pays", membre.Pays);
+                command.Parameters.AddWithValue("@ville", membre.Ville);
+                command.Parameters.AddWithValue("@rue", membre.Rue);
+                command.Parameters.AddWithValue("@argent", membre.Argent);
+                command.Parameters.AddWithValue("@code_postal", membre.Code_postal);
+                command.Parameters.AddWithValue("@date_inscription", membre.Date_inscription);
+                command.Parameters.AddWithValue("@administrateur", membre.Administrateur);
+
+                command.ExecuteScalar();
+            }
+
+            return membre;
+        }
+
+
+
+        public static bool Delete(string mail)
+        {
+            bool estSupprimee = false;
+
+            using (SqlConnection connection = DataBase.GetConnection())
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(DELETE, connection);
+                command.Parameters.AddWithValue("@mail", mail);
+
+                estSupprimee = command.ExecuteNonQuery() != 0; ;
+            }
+
+            return estSupprimee;
+        }
+
+
+
+        public static bool Update(Membre membre)
+        {
+            bool aEteModifiee = false;
+
+            using (SqlConnection connection = DataBase.GetConnection())
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(UPDATE, connection);
+                command.Parameters.AddWithValue("@mail", membre.Mail);
+                command.Parameters.AddWithValue("@nom", membre.Nom);
+                command.Parameters.AddWithValue("@prenom", membre.Prenom);
+                command.Parameters.AddWithValue("@telephone", membre.Telephone);
+                command.Parameters.AddWithValue("@date_naissance", membre.Date_naissance);
+                command.Parameters.AddWithValue("@pays", membre.Pays);
+                command.Parameters.AddWithValue("@ville", membre.Ville);
+                command.Parameters.AddWithValue("@rue", membre.Rue);
+                command.Parameters.AddWithValue("@code_postal", membre.Code_postal);
+
+                aEteModifiee = command.ExecuteNonQuery() != 0;
+            }
+
+            return aEteModifiee;
+        }
+        public static bool UpdateArgent(string mail, decimal argent)
+        {
+            bool aEteModifiee = false;
+
+            using (SqlConnection connection = DataBase.GetConnection())
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(UPDATEARGENT, connection);
+                command.Parameters.AddWithValue("@mail", mail);
+                command.Parameters.AddWithValue("@argent", argent);
+
+                aEteModifiee = command.ExecuteNonQuery() != 0; ;
+            }
+
+            return aEteModifiee;
+        }
+        public static bool UpdatePassWord(string mail, string mot_de_passe)
+        {
+            bool aEteModifiee = false;
+
+            using (SqlConnection connection = DataBase.GetConnection())
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(UPDATEPASSWORD, connection);
+                command.Parameters.AddWithValue("@mail", mail);
+                command.Parameters.AddWithValue("@mot_de_passe", mot_de_passe);
+
+                aEteModifiee = command.ExecuteNonQuery() != 0;
+            }
+
+            return aEteModifiee;
         }
     }
 }
