@@ -38,5 +38,14 @@ namespace CannuyerLepapeServeur.Controllers
             }
             return "NOT_DELETE";
         }
+
+        public string Delete(int id_playlist)
+        {
+            if (PlaylistMusiqueDAO.Delete(id_playlist))
+            {
+                return "OK";
+            }
+            return "NOT_DELETE";
+        }
     }
 }

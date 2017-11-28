@@ -42,9 +42,9 @@ namespace CannuyerLepapeServeur.Controllers
             return "NOT_PUT";
         }
 
-        public string Delete(int id_playlist)
+        public string Delete(int id_playlist, string mail)
         {
-            if (PlaylistDAO.Delete(id_playlist))
+            if (PlaylistDAO.Delete(id_playlist, mail))
             {
                 return "OK";
             }

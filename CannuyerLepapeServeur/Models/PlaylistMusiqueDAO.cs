@@ -13,6 +13,7 @@ namespace CannuyerLepapeServeur.Models
         private static readonly string GET = QUERY + " WHERE id_musique = @id_musique and id_playlist = @id_playlist";
         private static readonly string CREATE = "INSERT INTO playlistmusique(id_musique, id_playlist)  VALUES (@id_musique, @id_playlist)";
         private static readonly string DELETE = "DELETE FROM playlistmusique WHERE id_musique = @id_musique and id_playlist = @id_playlist";
+        private static readonly string DELETEALL = "DELETE FROM playlistmusique WHERE id_playlist = @id_playlist";
 
         public static List<PlaylistMusique> GetAllPlaylistMusique()
         {
@@ -69,6 +70,23 @@ namespace CannuyerLepapeServeur.Models
 
                 SqlCommand command = new SqlCommand(DELETE, connection);
                 command.Parameters.AddWithValue("@id_musique", id_musique);
+                command.Parameters.AddWithValue("@id_playlist", id_playlist);
+
+                estSupprimee = command.ExecuteNonQuery() != 0; ;
+            }
+
+            return estSupprimee;
+        }
+
+        public static bool Delete(int id_playlist)
+        {
+            bool estSupprimee = false;
+
+            using (SqlConnection connection = DataBase.GetConnection())
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(DELETEALL, connection);
                 command.Parameters.AddWithValue("@id_playlist", id_playlist);
 
                 estSupprimee = command.ExecuteNonQuery() != 0; ;
