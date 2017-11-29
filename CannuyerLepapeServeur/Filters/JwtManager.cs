@@ -14,7 +14,7 @@ namespace JWT.Filters
     {
         public const string Secret = "85fds4561217zadxpCBA3B06519C8sfs1fds3253"; // your symetric
 
-        public static string GenerateToken(string username, int expireMinutes = 20)
+        public static string GenerateToken(string username, int expireMinutes = 2)
         {
             var symmetricKey = Convert.FromBase64String(Secret);
             var tokenHandler = new JwtSecurityTokenHandler();
