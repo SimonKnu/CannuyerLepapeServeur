@@ -225,6 +225,7 @@
     <Content Include="Image\byte.jpg" />
     <Content Include="Image\deeperlove.jpg" />
     <Content Include="Image\frontlines.jpg" />
+    <Content Include="Image\higher.jpg" />
     <Content Include="Image\keepitmello.jpg" />
     <Content Include="Image\light.jpg" />
     <Content Include="Image\notfound.png" />
@@ -233,6 +234,7 @@
     <Content Include="MusiqueFull\byte.mp3" />
     <Content Include="MusiqueFull\deeperlove.mp3" />
     <Content Include="MusiqueFull\frontlines.mp3" />
+    <Content Include="MusiqueFull\higher.mp3" />
     <Content Include="MusiqueFull\keepitmello.mp3" />
     <Content Include="MusiqueFull\light.mp3" />
     <Content Include="MusiqueFull\pizza.mp3" />
@@ -240,6 +242,7 @@
     <Content Include="Preview\byte.mp3" />
     <Content Include="Preview\deeperlove.mp3" />
     <Content Include="Preview\frontlines.mp3" />
+    <Content Include="Preview\higher.mp3" />
     <Content Include="Preview\keepitmello.mp3" />
     <Content Include="Preview\light.mp3" />
     <Content Include="Preview\pizza.mp3" />
