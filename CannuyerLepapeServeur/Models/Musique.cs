@@ -31,13 +31,7 @@ namespace CannuyerLepapeServeur.Models
             set;
         }
 
-        public string Preview
-        {
-            get;
-            set;
-        }
-
-        public string Musiquecomplet
+        public string Url
         {
             get;
             set;
@@ -55,19 +49,18 @@ namespace CannuyerLepapeServeur.Models
             set;
         }
 
-        public Musique(int id_musique, string auteur, string titre, string style, string preview, string musiquecomplet, string image, decimal prix)
+        public Musique(int id_musique, string auteur, string titre, string style, string url, string image, decimal prix)
         {
             Id_musique = id_musique;
             Auteur = auteur;
             Titre = titre;
             Style = style;
-            Preview = preview;
-            Musiquecomplet = musiquecomplet;
+            Url = url;
             Image = image;
             Prix = prix;
         }
 
-        public Musique(string auteur, string titre, string style, string preview, string musiquecomplet, string image, decimal prix):this(0, auteur, titre, style, preview, musiquecomplet, image, prix) { }
+        public Musique(string auteur, string titre, string style, string url, string image, decimal prix):this(0, auteur, titre, style, url, image, prix) { }
 
         public Musique() { }
     }

@@ -11,8 +11,8 @@ namespace CannuyerLepapeServeur.Models
 
         private static readonly string GETMUSIQUENOBUY = "SELECT * FROM musique LEFT JOIN achat on musique.id_musique = achat.id_musique WHERE achat.mail is null ORDER BY musique.auteur asc";
         private static readonly string DELETE = "DELETE FROM musique WHERE id_musique = @id_musique";
-        private static readonly string CREATE = "INSERT INTO musique(auteur, titre, style, preview, musiquecomplet, image, prix) OUTPUT INSERTED.id_musique VALUES (@auteur, @titre, @style, @preview, @musiquecomplet, @image, @prix)";
-        private static readonly string UPDATE = "UPDATE musique SET auteur = @auteur, titre = @titre, style = @style, preview = @preview, musiquecomplet = @musiquecomplet, image = @image, prix =  @prix WHERE id_musique = @id_musique";
+        private static readonly string CREATE = "INSERT INTO musique(auteur, titre, style, url, image, prix) OUTPUT INSERTED.id_musique VALUES (@auteur, @titre, @style, @url, @image, @prix)";
+        private static readonly string UPDATE = "UPDATE musique SET auteur = @auteur, titre = @titre, style = @style, url = @url, image = @image, prix =  @prix WHERE id_musique = @id_musique";
         private static readonly string GETACHAT = "SELECT musique.* FROM musique INNER JOIN achat ON achat.id_musique = musique.id_musique WHERE achat.statut = @statut AND achat.mail LIKE @mail";
         private static readonly string GETPLAYLIST= "SELECT musique.* FROM musique inner join playlistmusique on playlistmusique.id_musique = musique.id_musique where playlistmusique.id_playlist = @id_playlist";
 
@@ -30,7 +30,7 @@ namespace CannuyerLepapeServeur.Models
 
                 while (reader.Read())
                 {
-                    liste.Add(new Musique(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetDecimal(7)));
+                    liste.Add(new Musique(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetDecimal(6)));
                 }
             }
 
@@ -52,7 +52,7 @@ namespace CannuyerLepapeServeur.Models
 
                 while (reader.Read())
                 {
-                    liste.Add(new Musique(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetDecimal(7)));
+                    liste.Add(new Musique(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetDecimal(6)));
                 }
             }
 
@@ -75,7 +75,7 @@ namespace CannuyerLepapeServeur.Models
 
                 while (reader.Read())
                 {
-                    liste.Add(new Musique(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetDecimal(7)));
+                    liste.Add(new Musique(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetDecimal(6)));
                 }
             }
 
@@ -92,8 +92,7 @@ namespace CannuyerLepapeServeur.Models
                 command.Parameters.AddWithValue("@auteur", musique.Auteur);
                 command.Parameters.AddWithValue("@titre", musique.Titre);
                 command.Parameters.AddWithValue("@style", musique.Style);
-                command.Parameters.AddWithValue("@preview", musique.Preview);
-                command.Parameters.AddWithValue("@musiquecomplet", musique.Musiquecomplet);
+                command.Parameters.AddWithValue("@url", musique.Url);
                 command.Parameters.AddWithValue("@image", musique.Image);
                 command.Parameters.AddWithValue("@prix", musique.Prix);
 
@@ -133,8 +132,7 @@ namespace CannuyerLepapeServeur.Models
                 command.Parameters.AddWithValue("@auteur", musique.Auteur);
                 command.Parameters.AddWithValue("@titre", musique.Titre);
                 command.Parameters.AddWithValue("@style", musique.Style);
-                command.Parameters.AddWithValue("@preview", musique.Preview);
-                command.Parameters.AddWithValue("@musiquecomplet", musique.Musiquecomplet);
+                command.Parameters.AddWithValue("@url", musique.Url);
                 command.Parameters.AddWithValue("@image", musique.Image);
                 command.Parameters.AddWithValue("@prix", musique.Prix);
 
