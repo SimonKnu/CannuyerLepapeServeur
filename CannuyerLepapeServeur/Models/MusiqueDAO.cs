@@ -9,7 +9,7 @@ namespace CannuyerLepapeServeur.Models
     public static class MusiqueDAO
     {
 
-        private static readonly string GETMUSIQUENOBUY = "SELECT * FROM musique LEFT JOIN achat on musique.id_musique = achat.id_musique WHERE achat.mail is null";
+        private static readonly string GETMUSIQUENOBUY = "SELECT * FROM musique LEFT JOIN achat on musique.id_musique = achat.id_musique WHERE achat.mail is null ORDER BY musique.auteur asc";
         private static readonly string DELETE = "DELETE FROM musique WHERE id_musique = @id_musique";
         private static readonly string CREATE = "INSERT INTO musique(auteur, titre, style, preview, musiquecomplet, image, prix) OUTPUT INSERTED.id_musique VALUES (@auteur, @titre, @style, @preview, @musiquecomplet, @image, @prix)";
         private static readonly string UPDATE = "UPDATE musique SET auteur = @auteur, titre = @titre, style = @style, preview = @preview, musiquecomplet = @musiquecomplet, image = @image, prix =  @prix WHERE id_musique = @id_musique";
