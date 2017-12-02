@@ -226,6 +226,7 @@
     <Content Include="Image\deeperlove.jpg" />
     <Content Include="Image\frontlines.jpg" />
     <Content Include="Image\keepitmello.jpg" />
+    <Content Include="Image\notfound.png" />
     <Content Include="Image\pizza.jpg" />
     <Content Include="Image\spotless.jpg" />
     <Content Include="MusiqueFull\byte.mp3" />
