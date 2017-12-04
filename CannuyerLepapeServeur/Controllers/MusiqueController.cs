@@ -22,6 +22,7 @@ namespace CannuyerLepapeServeur.Controllers
             return MusiqueDAO.Get(id_playlist);
         }
 
+
         [JwtAuthentication]
         public IEnumerable<Musique> Get(string mail, int statut)
         {
