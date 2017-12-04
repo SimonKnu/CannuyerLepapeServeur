@@ -106,9 +106,9 @@ namespace CannuyerLepapeServeur.Models
                 command.Parameters.AddWithValue("@id_musique", achat.Id_musique);
                 command.Parameters.AddWithValue("@statut", achat.Statut);
 
-                aEteModifiee = command.ExecuteNonQuery() != 0; ;
+                aEteModifiee = command.ExecuteNonQuery() != 0;
             }
-
+            
             return aEteModifiee;
         }
     }
