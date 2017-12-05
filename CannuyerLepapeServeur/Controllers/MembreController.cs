@@ -45,9 +45,9 @@ namespace CannuyerLepapeServeur.Controllers
             return "NOT_PUT";
         }
         [JwtAuthentication]
-        public string Put(string mail, string mot_de_passe)
+        public string Put(string mail, string mot_de_passe, string old_password)
         {
-            if (MembreDAO.UpdatePassWord(mail,mot_de_passe))
+            if (MembreDAO.UpdatePassWord(mail,mot_de_passe,old_password))
             {
                 return "OK";
             }

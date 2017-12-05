@@ -14,7 +14,7 @@ namespace CannuyerLepapeServeur.Models
         private static readonly string CREATE = "INSERT INTO membre(mail, mot_de_passe, nom, prenom, telephone, date_naissance, pays, ville, rue, code_postal, argent, date_inscription, administrateur) VALUES (@mail, @mot_de_passe, @nom, @prenom, @telephone, @date_naissance, @pays, @ville, @rue, @code_postal, @argent, @date_inscription, @administrateur)";
         private static readonly string DELETE = "DELETE FROM membre WHERE mail = @mail";
         private static readonly string UPDATE = "UPDATE membre SET nom = @nom, prenom = @prenom, telephone = @telephone, date_naissance = @date_naissance, pays = @pays, ville = @ville, rue = @rue, code_postal = @code_postal WHERE mail = @mail";
-        private static readonly string UPDATEPASSWORD = "UPDATE membre SET mot_de_passe = @mot_de_passe WHERE mail = @mail";
+        private static readonly string UPDATEPASSWORD = "UPDATE membre SET mot_de_passe = @nouveau WHERE mail = @mail and mot_de_passe = @mot_de_passe";
         private static readonly string UPDATEARGENT = "UPDATE membre SET argent = @argent WHERE mail = @mail";
 
 
@@ -68,6 +68,9 @@ namespace CannuyerLepapeServeur.Models
 
                 SqlCommand command = new SqlCommand(VERIFICATION, connection);
                 command.Parameters.AddWithValue("@mail", mail);
+
+                password = Encrypt.EncryptPassword(password);
+
                 command.Parameters.AddWithValue("@mot_de_passe", password);
 
                 SqlDataReader reader = command.ExecuteReader();
@@ -90,6 +93,9 @@ namespace CannuyerLepapeServeur.Models
 
                 SqlCommand command = new SqlCommand(CREATE, connection);
                 command.Parameters.AddWithValue("@mail", membre.Mail);
+
+                membre.Mot_de_passe = Encrypt.EncryptPassword(membre.Mot_de_passe);
+
                 command.Parameters.AddWithValue("@mot_de_passe", membre.Mot_de_passe);
                 command.Parameters.AddWithValue("@nom", membre.Nom);
                 command.Parameters.AddWithValue("@prenom", membre.Prenom);
@@ -171,7 +177,7 @@ namespace CannuyerLepapeServeur.Models
 
             return aEteModifiee;
         }
-        public static bool UpdatePassWord(string mail, string mot_de_passe)
+        public static bool UpdatePassWord(string mail, string mot_de_passe, string old_password)
         {
             bool aEteModifiee = false;
 
@@ -180,8 +186,12 @@ namespace CannuyerLepapeServeur.Models
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(UPDATEPASSWORD, connection);
+                mot_de_passe = Encrypt.EncryptPassword(mot_de_passe);
+                mot_de_passe = Encrypt.EncryptPassword(old_password);
+
                 command.Parameters.AddWithValue("@mail", mail);
-                command.Parameters.AddWithValue("@mot_de_passe", mot_de_passe);
+                command.Parameters.AddWithValue("@nouveau", mot_de_passe);
+                command.Parameters.AddWithValue("@mot_de_passe", old_password);
 
                 aEteModifiee = command.ExecuteNonQuery() != 0;
             }

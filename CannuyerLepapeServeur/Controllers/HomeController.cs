@@ -11,9 +11,10 @@ namespace CannuyerLepapeServeur.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "TrackCity";
 
             return View();
+
         }
     }
 }
