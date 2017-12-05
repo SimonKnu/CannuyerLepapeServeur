@@ -12,9 +12,9 @@ namespace CannuyerLepapeServeur.Models
     {
         //source -http://webman.developpez.com/articles/dotnet/aes-rijndael/#L2.1
 
-        static readonly string PasswordHash = "P@@Sw892d0rd";
-        static readonly string SaltKey = "S@LTd592dm&KEY";
-        static readonly string VIKey = "@1B2c3Df69ald4e5F6g7H8";
+        static readonly string PasswordHash = "FadDd52da9Mmdax2";
+        static readonly string SaltKey = "Sa9c&dzdsqaqdfKEY";
+        static readonly string VIKey = "@1B29ABDC555g7H8";
 
         public static string EncryptPassword(string plainText)
         {

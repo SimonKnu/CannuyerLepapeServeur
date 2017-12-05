@@ -180,14 +180,14 @@ namespace CannuyerLepapeServeur.Models
         public static bool UpdatePassWord(string mail, string mot_de_passe, string old_password)
         {
             bool aEteModifiee = false;
+            mot_de_passe = Encrypt.EncryptPassword(mot_de_passe);
+            old_password = Encrypt.EncryptPassword(old_password);
 
             using (SqlConnection connection = DataBase.GetConnection())
             {
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(UPDATEPASSWORD, connection);
-                mot_de_passe = Encrypt.EncryptPassword(mot_de_passe);
-                mot_de_passe = Encrypt.EncryptPassword(old_password);
 
                 command.Parameters.AddWithValue("@mail", mail);
                 command.Parameters.AddWithValue("@nouveau", mot_de_passe);
