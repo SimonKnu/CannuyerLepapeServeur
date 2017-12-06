@@ -48,7 +48,7 @@ namespace CannuyerLepapeServeur.Models
             Msg.From = new MailAddress("trackcityreset@gmail.com");
             Msg.To.Add(mail);
             Msg.Subject = "TrackCity - Réinitialisation de votre mot de passe";
-            Msg.Body = "Bonjour "+nom+" "+prenom+".\n\nVous avez effectué une demande de réinitialisation de mot de passe pour votre compte TrackCity.\n\n" +
+            Msg.Body = "Bonjour "+prenom+" "+nom+",\n\nVous avez effectué une demande de réinitialisation de mot de passe pour votre compte TrackCity.\n\n" +
                 "Nous vous avons généré un nouveau mot de passe aléatoire temporaire que nous vous invitons à aller modifier directement.\n\nVotre nouveau mot de passe est : "+password+".\n\n" +
                 "Nous vous souhaitons une agréable journée ou nuit sur notre site TrackCity.\n\nSimon & Yorick.";
             SmtpClient smtp = new SmtpClient();
