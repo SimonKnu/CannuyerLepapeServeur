@@ -51,7 +51,7 @@ namespace CannuyerLepapeServeur.Models
             Msg.Subject = "TrackCity - Réinitialisation de votre mot de passe";
             Msg.Body = "Bonjour "+prenom+" "+nom+ ",<br><br>" +
                 "Vous avez effectué une demande de réinitialisation de votre mot de passe pour votre compte TrackCity.<br><br>" +
-                "Nous vous avons généré un nouveau mot de passe aléatoire que nous vous invitons à aller directement modifier.<br><br>" +
+                "Nous avons généré un nouveau mot de passe aléatoire que nous vous invitons à modifier directement.<br><br>" +
                 "Votre nouveau mot de passe est : <b>"+password+ "</b><br><br>" +
                 "Nous vous souhaitons une agréable journée ou nuit sur notre site TrackCity.<br><br>" +
                 "Simon & Yorick.";
