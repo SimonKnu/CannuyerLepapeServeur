@@ -5,6 +5,7 @@ using System.Text;
 using System.Web;
 using System.Security.Cryptography;
 using System.IO;
+using System.Net.Mail;
 
 namespace CannuyerLepapeServeur.Models
 {
@@ -38,6 +39,38 @@ namespace CannuyerLepapeServeur.Models
                 memoryStream.Close();
             }
             return Convert.ToBase64String(cipherTextBytes);
+        }
+
+
+        public static void sendMail(string mail, string nom, string prenom, string password)
+        {
+            MailMessage Msg = new MailMessage();
+            Msg.From = new MailAddress("trackcityreset@gmail.com");
+            Msg.To.Add(mail);
+            Msg.Subject = "TrackCity - Réinitialisation de votre mot de passe";
+            Msg.Body = "Bonjour "+nom+" "+prenom+".\n\nVous avez effectué une demande de réinitialisation de mot de passe pour votre compte TrackCity.\n\n" +
+                "Nous vous avons généré un nouveau mot de passe aléatoire temporaire que nous vous invitons à aller modifier directement.\n\nVotre nouveau mot de passe est : "+password+".\n\n" +
+                "Nous vous souhaitons une agréable journée ou nuit sur notre site TrackCity.\n\nSimon & Yorick.";
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.Credentials = new System.Net.NetworkCredential("trackcityreset@gmail.com", "vivilafolie");
+            smtp.EnableSsl = true;
+            smtp.Send(Msg);
+        }
+
+        public static string random_string(int size)
+        {
+            string dico = "ABCDEFGHJKLMNOPQRSTUVWXYZ";
+            char[] chars = new char[size];
+            Random rand = new Random();
+
+            for (int i = 0; i < size; i++)
+            {
+                chars[i] = dico[rand.Next(0, dico.Length)];
+            }
+
+            return new string(chars);
         }
     }
 }

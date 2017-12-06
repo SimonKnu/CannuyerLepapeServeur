@@ -16,7 +16,7 @@ namespace CannuyerLepapeServeur.Models
         private static readonly string UPDATE = "UPDATE membre SET nom = @nom, prenom = @prenom, telephone = @telephone, date_naissance = @date_naissance, pays = @pays, ville = @ville, rue = @rue, code_postal = @code_postal WHERE mail = @mail";
         private static readonly string UPDATEPASSWORD = "UPDATE membre SET mot_de_passe = @nouveau WHERE mail = @mail and mot_de_passe = @mot_de_passe";
         private static readonly string UPDATEARGENT = "UPDATE membre SET argent = @argent WHERE mail = @mail";
-
+        private static readonly string UPDATEFORGETPASSWORD = "UPDATE membre SET mot_de_passe = @mot_de_passe WHERE mail = @mail and nom = @nom and prenom = @prenom";
 
 
         public static List<Membre> GetAllMembre()
@@ -72,6 +72,24 @@ namespace CannuyerLepapeServeur.Models
                 password = Encrypt.EncryptPassword(password);
 
                 command.Parameters.AddWithValue("@mot_de_passe", password);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public static bool GetMail(string mail, bool test)
+        {
+            using (SqlConnection connection = DataBase.GetConnection())
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(GET, connection);
+                command.Parameters.AddWithValue("@mail", mail);
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -194,6 +212,32 @@ namespace CannuyerLepapeServeur.Models
                 command.Parameters.AddWithValue("@mot_de_passe", old_password);
 
                 aEteModifiee = command.ExecuteNonQuery() != 0;
+            }
+
+            return aEteModifiee;
+        }
+        public static bool UpdateForgetPassword(string mail, string nom, string prenom, string mot_de_passe)
+        {
+            bool aEteModifiee = false;
+            mot_de_passe = Encrypt.random_string(7);
+            string mot_de_passeBD = Encrypt.EncryptPassword(mot_de_passe);
+
+            using (SqlConnection connection = DataBase.GetConnection())
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(UPDATEFORGETPASSWORD, connection);
+
+                command.Parameters.AddWithValue("@mail", mail);
+                command.Parameters.AddWithValue("@nom", nom);
+                command.Parameters.AddWithValue("@prenom", prenom);
+                command.Parameters.AddWithValue("@mot_de_passe", mot_de_passeBD);
+
+                aEteModifiee = command.ExecuteNonQuery() != 0;
+                if (aEteModifiee == true)
+                {
+                    Encrypt.sendMail(mail,nom,prenom,mot_de_passe);
+                }
             }
 
             return aEteModifiee;
