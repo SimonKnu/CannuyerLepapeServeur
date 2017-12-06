@@ -45,12 +45,16 @@ namespace CannuyerLepapeServeur.Models
         public static void sendMail(string mail, string nom, string prenom, string password)
         {
             MailMessage Msg = new MailMessage();
+            Msg.IsBodyHtml = true;
             Msg.From = new MailAddress("trackcityreset@gmail.com");
             Msg.To.Add(mail);
             Msg.Subject = "TrackCity - Réinitialisation de votre mot de passe";
-            Msg.Body = "Bonjour "+prenom+" "+nom+",\n\nVous avez effectué une demande de réinitialisation de votre mot de passe pour votre compte TrackCity.\n\n" +
-                "Nous vous avons généré un nouveau mot de passe aléatoire que nous vous invitons à aller directement modifier.\n\nVotre nouveau mot de passe est : "+password+".\n\n" +
-                "Nous vous souhaitons une agréable journée ou nuit sur notre site TrackCity.\n\nSimon & Yorick.";
+            Msg.Body = "Bonjour "+prenom+" "+nom+ ",<br><br>" +
+                "Vous avez effectué une demande de réinitialisation de votre mot de passe pour votre compte TrackCity.<br><br>" +
+                "Nous vous avons généré un nouveau mot de passe aléatoire que nous vous invitons à aller directement modifier.<br><br>" +
+                "Votre nouveau mot de passe est : <b>"+password+ "</b><br><br>" +
+                "Nous vous souhaitons une agréable journée ou nuit sur notre site TrackCity.<br><br>" +
+                "Simon & Yorick.";
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
