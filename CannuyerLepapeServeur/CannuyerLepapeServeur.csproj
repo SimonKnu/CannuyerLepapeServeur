@@ -239,6 +239,7 @@
     <Content Include="Image\logo2.png" />
     <Content Include="Image\maketheworldours.jpg" />
     <Content Include="Image\notfoundmusique.png" />
+    <Content Include="Image\notfoundmusiqueplaylist.png" />
     <Content Include="Image\notfoundpanier.png" />
     <Content Include="Image\notfoundplaylist.png" />
     <Content Include="Image\oops.jpg" />
